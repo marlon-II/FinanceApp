@@ -29,7 +29,7 @@ class ExpenseController extends Controller
         $categories = Category::where('user_id', auth()->id()->get());;
         $accounts = Account::where('user_id',auth()->id()->get());
 
-        returny view('exspense.create', compact('categories', 'accounts'));
+        return view('exspense.create', compact('categories', 'accounts'));
     }
 
     public function store(Request $request)
