@@ -9,12 +9,11 @@
                 <div>
                     <p><strong>Descrição:</strong> {{ $income->description }}</p>
                     <p><strong>Valor:</strong> R$ {{ number_format($income->amount, 2, ',', '.') }}</p>
-                    <p><strong>Vencimento:</strong> {{ \Carbon\Carbon::parse($income->due_date)->format('d/m/Y') }}</p>
-                    <p><strong>Categoria:</strong> {{ $income->category->name ?? 'Sem categoria' }}</p>
+                    <p><strong>Vencimento:</strong> {{ \Carbon\Carbon::parse($income->date)->format('d/m/Y') }}</p>
                     <p><strong>Conta:</strong> {{ $income->account->name ?? 'Sem conta' }}</p>
                     <p><strong>Tipo:</strong> {{ $income->type }}</p>
-                    <p><strong>Status:</strong> {{ $income->status }}</p>
-                    <p><strong>Observações:</strong> {{ income->notes ?? 'Nenhuma' }}</p>
+                    <p><strong>Recorrente:</strong> {{ $income->is_recurring ? 'Sim' : 'Não' }}</p>
+                    <p><strong>Observações:</strong> {{ $income->notes ?? 'Nenhuma' }}</p>
                 </div>
 
                 <div>
