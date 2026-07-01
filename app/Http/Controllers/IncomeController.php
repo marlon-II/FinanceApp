@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Income;
-use App\Models\Account;
+use App\Models\Account;  
 
 class IncomeController extends Controller
 {

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Expense extends Model
 {
@@ -30,10 +32,10 @@ class Expense extends Model
 
     public function installments(): HasMany
     {
-        return $this->hasMany(Installment::class);
+        return $this->hasMany(Installment::class);  
     }
 
-    // Scope para filtrar pelo mês/ano
+
     public function scopeOfMonth($query, $year, $month)
     {
         return $query->whereYear('date', $year)
