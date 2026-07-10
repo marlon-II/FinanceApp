@@ -14,7 +14,7 @@
                     <p><strong>Tipo:</strong> {{ $income->type }}</p>
                     <p><strong>Recorrente:</strong> {{ $income->is_recurring ? 'Sim' : 'Não' }}</p>
                     <p><strong>Observações:</strong> {{ $income->notes ?? 'Nenhuma' }}</p>
-                </div>
+                </div> 
 
                 <div>
                     <a href="{{ route('incomes.edit', $income) }}">Editar</a>

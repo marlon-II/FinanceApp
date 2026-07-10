@@ -1,8 +1,8 @@
-<x-app-layout>
+ <x-app-layout>
     <x-slot name="header">
         <div style="display:flex; justify-content: space-between; align-items: center;">
-            <h2>Receitas</h2>
-            <a href="{{route('incomes.create')}}">Novas receitas</a>
+            <h2>Categorias</h2>
+            <a href="{{route('categories.create')}}">Nova Categoria</a>
         </div>
     </x-slot>
 
@@ -12,7 +12,7 @@
                 <div>{{ session('success') }}</div>
             @endif
 
-            <livewire:incomes.income-list />
+            <livewire:categories.category-list />
         </div>
     </div>
 </x-app-layout>
