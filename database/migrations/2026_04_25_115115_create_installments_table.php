@@ -9,18 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('installments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('expense_id')->constrained()->cascadeOnDelete();
-            $table->unsignedTinyInteger('installment_number');
-            $table->decimal('amount', 10, 2);
-            $table->date('due_date');
-            $table->timestamp('paid_at')->nullable();
-            $table->timestamps();
-        });
-    }
+   public function up(): void
+{
+    Schema::create('installments', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('expense_id')->constrained()->onDelete('cascade');
+        $table->unsignedTinyInteger('installment_number');
+        $table->decimal('amount', 10, 2);
+        $table->date('due_date');
+        $table->enum('status', ['pending', 'paid', 'overdue'])->default('pending');
+        $table->timestamp('paid_at')->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

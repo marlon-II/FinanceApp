@@ -10,22 +10,24 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('expenses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('account_id')->constrained();
-            $table->decimal('amount', 10, 2);
-            $table->string('description');
-            $table->date('date');
-            $table->enum('type', ['fixa', 'variavel', 'parcelado']);
-            $table->enum('status', ['pendente', 'pago', 'vencido'])->default('pendente');
-            $table->boolean('is_recurring')->default(false);
-            $table->unsignedTinyInteger('total_installments')->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('expenses', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('category_id')->constrained()->onDelete('cascade');
+        $table->foreignId('account_id')->constrained()->onDelete('cascade');
+        $table->string('description');
+        $table->decimal('amount', 10, 2);
+        $table->date('date');
+        $table->enum('type', ['fixed', 'variable', 'installment']);
+        $table->enum('status', ['pending', 'paid', 'overdue'])->default('pending');
+        $table->text('notes')->nullable();
+        $table->boolean('is_recurring')->default(false);
+        $table->string('recurrence_type')->nullable();
+        $table->unsignedTinyInteger('total_installments')->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

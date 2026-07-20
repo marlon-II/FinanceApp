@@ -10,12 +10,18 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('accounts', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->string('name');
+        $table->enum('type', ['checking', 'savings', 'investment', 'cash']);
+        $table->decimal('balance', 10, 2)->default(0);
+        $table->string('bank_name')->nullable();
+        $table->string('account_number', 50)->nullable();
+        $table->timestamps();
+    });
+}
 
     /**
      * Reverse the migrations.

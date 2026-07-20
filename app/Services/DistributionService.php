@@ -7,20 +7,19 @@ use App\Models\Income;
 
 class DistributionService
 {
-    const NEED_PERCENTAGE = 50;
+    const NEEDS_PERCENTAGE = 50;
     const WANTS_PERCENTAGE =30;
-    const INVESTIMENTS_PERCENTAGE = 20;
-
-    public function calculate(int $userid, string $month): array
+    const INVESTMENTS_PERCENTAGE = 20;
+    public function calculate(int $userId, string $month): array
     {
-        $totalIncome = Icome::where('user-id', $userId)
+        $totalIncome = Income::where('user_id', $userId)
         ->whereMonth('date', date('m', strtotime($month)))
         ->whereYear('date', date('Y', strtotime($month)))
         ->sum('amount');
 
         $totalExpenses = Expense::where('user_id', $userId)
-            ->whereMonth('due_date', date('m', strtotime($month)))
-            ->whereYear('due_date', date('Y', strtotime($month)))
+            ->whereMonth('date', date('m', strtotime($month)))
+            ->whereYear('date', date('Y', strtotime($month)))
             ->sum('amount');
 
         return [

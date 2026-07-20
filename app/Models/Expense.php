@@ -13,7 +13,7 @@ class Expense extends Model
         'amount', 'description', 'date',
         'type', 'status', 'is_recurring', 'total_installments',
     ];
-
+ 
     protected $casts = [
         'date'               => 'date',
         'amount'             => 'decimal:2',

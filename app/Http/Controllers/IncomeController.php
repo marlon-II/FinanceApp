@@ -10,7 +10,7 @@ class IncomeController extends Controller
 {
     public function index()
     {
-        $incomes = Incomes::where('user_id', auth()->id())
+        $incomes = Income::where('user_id', auth()->id())
         ->with('account')
         ->orderBy('date', 'desc')
         ->paginate(10);
